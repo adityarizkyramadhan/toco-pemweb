@@ -88,7 +88,7 @@
 
         <div style="display: flex; justify-content: space-between;">
             <div>
-                <button type="submit">Register</button>
+                <button type="submit">Login</button>
             </div>
             <div>
                 <a href="{{ route('home') }}">

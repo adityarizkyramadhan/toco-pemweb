@@ -83,7 +83,7 @@
 <body>
     <h2>Register</h2>
     <div class="formquiz">
-        <form method="POST" action="{{ route('register') }}" style="padding:10px">
+        <form method="POST" action="{{ route('register.post') }}" style="padding:10px">
             @csrf
 
             <div>

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('name', 50)->nullable(false);
             $table->string('email', 50)->nullable(false);
-            $table->string('password', 50)->nullable(false);
+            $table->string('password', 255)->nullable(false);
             $table->string('address', 50)->nullable(false);
             $table->string('age', 50)->nullable(false);
         });

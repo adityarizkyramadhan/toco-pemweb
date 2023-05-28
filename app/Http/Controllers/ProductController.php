@@ -37,6 +37,6 @@ class ProductController extends Controller
             ],
         ];
 
-        return view('products.index', compact('products'));
+        return view('product/table', compact('products'));
     }
 }

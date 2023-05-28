@@ -32,11 +32,17 @@ class SessionController extends Controller
             'email'=>$request->email,
             'password'=>$request->password
         ];
-        if(Auth::attempt($infoLogin)){
-            return redirect()->route('home');
-        }else{
+        //check email and password in database
+        $user = User::where('email', $infoLogin['email'])->first();
+        if(!$user){
             return redirect()->route('login')->with('error', 'Email or password is incorrect');
         }
+        //check password with bcrypt
+        if(!Auth::attempt($infoLogin)){
+            return redirect()->route('login')->with('error', 'Email or password is incorrect');
+        }
+        //if success login
+        return redirect()->route('firstpage');
     }
     function register(Request $request){
         //validate email and password
@@ -59,7 +65,7 @@ class SessionController extends Controller
         //if validation success
         $infoRegister = [
             'email'=>$request->email,
-            'password'=>$request->password,
+            'password'=>bcrypt($request->password),
             'name'=>$request->name,
             'address'=>$request->address,
             'age'=>$request->age

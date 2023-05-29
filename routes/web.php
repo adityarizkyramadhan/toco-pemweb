@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
@@ -29,3 +30,6 @@ Route::post('/register', [SessionController::class, 'register'])->name('register
 
 Route::get('/product', [ProductController::class, 'index'])->name('firstpage');
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.detail');
+
+Route::get('/product/{idProduct}/price/{price}', [PaymentController::class, 'showCheckoutForm'])->name('product.price');
+Route::post('/checkout', [PaymentController::class, 'checkOut'])->name('product.checkout');

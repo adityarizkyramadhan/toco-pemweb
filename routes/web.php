@@ -27,4 +27,5 @@ Route::post('/login', [SessionController::class, 'login'])->name('login.post');
 Route::get('/register', [SessionController::class, 'registerPage'])->name('register');
 Route::post('/register', [SessionController::class, 'register'])->name('register.post');
 
-Route::get('/firstpage', [ProductController::class, 'index'])->name('firstpage');
+Route::get('/product', [ProductController::class, 'index'])->name('firstpage');
+Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.detail');

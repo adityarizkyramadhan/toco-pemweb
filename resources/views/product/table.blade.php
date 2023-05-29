@@ -83,7 +83,7 @@
                                 <h5 class="card-title">{{ $product['name'] }}</h5>
                                 <p class="card-text">{{ $product['description'] }}</p>
                                 <h6 class="card-subtitle mb-2 text-muted">Harga: {{ $product['price'] }}</h6>
-                                <a href="#" class="btn btn-primary">Beli</a>
+                                <a href="/product/{{ $product['id'] }}" class="btn btn-primary">Detail</a>
                             </div>
                         </div>
                     </div>

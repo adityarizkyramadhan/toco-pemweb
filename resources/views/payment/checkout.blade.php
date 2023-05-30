@@ -5,7 +5,7 @@
     <title>Checkout</title>
     <style>
         body{
-            
+
         }
     </style>
 </head>
@@ -31,9 +31,7 @@
                 <p id="totalprice" name="totalprice" class="form-price">0.00</p>
             </div>
             <button type="submit" class="checkout-button">Checkout</button>
-            <!--tambahkan IdProduct dan IdUser untuk dipost-->
-            {{-- <input type="hidden" name="id_product" value="{{ $IdProduct }}">
-            <input type="hidden" name="id_user" value="{{ $IdUser }}"> --}}
+            <input type="hidden" name="id_product" value="{{ $idProduct }}">
         </form>
     </div>
 

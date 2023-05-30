@@ -30,17 +30,14 @@ Route::post('/register', [SessionController::class, 'register'])->name('register
 
 Route::post('/send-message', [ChatController::class, 'sendMessage'])->name('send.message');
 Route::get('/chat', [ChatController::class, 'index'])->name('chat');
+Route::get('/success', [PaymentController::class, 'updatePayment'])->name('success.payment');
+
+Route::get('/product', [ProductController::class, 'index'])->name('firstpage');
+Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.detail');
+
 
 Route::middleware(['auth'])->group(function () {
-
-    // Product
-    Route::get('/product', [ProductController::class, 'index'])->name('firstpage');
-    Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.detail');
-
     // Payment
     Route::get('/product/{idProduct}/price/{price}', [PaymentController::class, 'showCheckoutForm'])->name('product.price');
     Route::post('/checkout', [PaymentController::class, 'checkOut'])->name('product.checkout');
-    
-    // for success redirect
-    Route::get('/success', [PaymentController::class, 'updatePayment'])->name('success.payment');
 });

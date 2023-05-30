@@ -3,6 +3,11 @@
 
 <head>
     <title>Login</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Styles -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -73,8 +78,15 @@
     <!-- Form login -->
     <h2>Login</h2>
 
+    @if ($message = Session::get('error'))
+        <div class="alert alert-danger alert-block">
+            {{-- <button type="button" class="close" data-dismiss="alert">×</button> --}}
+            <strong>{{ $message }}</strong>
+        </div>
+    @endif
     <form method="POST" action="{{ route('login') }}">
         @csrf
+
 
         <div>
             <label for="email">Email</label>

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Xendit\Invoice;
 use Xendit\Platform;
 use Xendit\Xendit;
+use Illuminate\Support\Facades\Auth;
 
 class PaymentController extends Controller
 {
@@ -35,12 +36,15 @@ class PaymentController extends Controller
         $message = $request->input('message');
         $quantity = $request->input('quantity');
         $price = $request->input('price');
+        $idProduct = $request->input('idProduct');
         $totalprice = $price * $quantity;
         $status = 'pending';
 
+
+
         $data = [
-            'product_id' => 1,
-            'user_id' => 1,
+            'product_id' => $idProduct,
+            'user_id' => Auth::user()->id,
             'message' => $message,
             'quantity' => $quantity,
             'price' => $price,

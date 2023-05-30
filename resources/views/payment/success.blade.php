@@ -34,6 +34,6 @@
   <div class="container">
   	<div class="image-success"></div>
     <h2>PEMBAYARAN SUKSES</h2>
-    <a class="btn" href="">Kembali ke Dashboard</a>
+    <a class="btn" href="{{route('firstpage')}}">Kembali ke Dashboard</a>
   </div>
 </body>

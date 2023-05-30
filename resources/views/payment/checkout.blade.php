@@ -22,11 +22,11 @@
             </div>
             <div class="form-group">
                 <label for="price">Harga Barang:</label>
-                <input type="number" id="price" name="price" step="0.01" min="0" disabled value="{{ $price }}">
+                <input type="number" id="price" name="price" step="0.01" min="0" readonly value="{{ $price }}">
             </div>
             <div class="form-group">
-                <label for="total-price">Total Harga:</label>
-                <p id="totalprice" class="form-price">0.00</p>
+                <label for="totalprice">Total Harga:</label>
+                <p id="totalprice" name="totalprice" class="form-price">0.00</p>
             </div>
             <button type="submit" class="checkout-button">Checkout</button>
             <!--tambahkan IdProduct dan IdUser untuk dipost-->
@@ -40,7 +40,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             const quantityInput = document.getElementById('quantity');
             const priceInput = document.getElementById('price');
-            const totalPriceElement = document.getElementById('total-price');
+            const totalPriceElement = document.getElementById('totalprice');
 
             function calculateTotalPrice() {
                 const quantity = quantityInput.value;

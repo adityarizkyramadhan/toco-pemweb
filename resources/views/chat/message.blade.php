@@ -43,6 +43,7 @@
             var messageInput = document.getElementById("message");
             var message = messageInput.value;
             renderChat("User : " + message);
+            messageInput.value = "";
 
             if (message.trim() !== "") {
                 fetch('/send-message', {
@@ -55,17 +56,19 @@
                             message: message
                         })
                     })
-                    .then(response => response.json())
+                    .then(response => {
+                        console.log(response);
+                        if (!response.ok) {
+                            throw Error(response.statusText);
+                        }
+                        console.log(response);
+                        return response.json();
+                    })
                     .then(data => {
                         console.log(data);
                         // pisahkan dari array json dimana user = user dan user = bot
-
-                        renderChat("Bot : " + data.message);
-
-
-
+                        renderChat(data.message.content);
                         // Clear input field
-                        messageInput.value = "";
                     })
                     .catch(error => {
                         console.error(error);

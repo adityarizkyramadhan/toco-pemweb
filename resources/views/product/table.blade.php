@@ -10,23 +10,42 @@
         body{
             margin: 0;
             padding: 0;
+            width: 100%;
+            max-width: none;
         }
 
         .container {
             width: 100%;
-            margin: 0 auto;
-            padding: 20px;
+            max-width: none;
+        }
+
+        .banner-container{
+            display: flex;
+            justify-content: center;
+            background-color: gray;
+            border-radius: 16px;
+            width: calc(100% - 64px);
+            max-width: none;
+            margin: 32px;
+        }
+
+        .banner{
+            max-width: 50%;
+            height: auto;
+        }
+
+        .daftar-product-title{
+            margin: 16px;
         }
 
         .row {
             display: flex;
             flex-wrap: wrap;
-            margin: -10px;
         }
 
         .col-md-4 {
-            width: calc(33.3% - 20px);
-            margin: 10px;
+            width: calc(25%);
+            max-width: none;
         }
 
         .card {
@@ -34,6 +53,7 @@
             box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
             border-radius: 8px;
             padding: 12px;
+            margin: 16px;
             background-color: #f9f9f9;
         }
 
@@ -100,12 +120,6 @@
         .navbar-menu-item{
             margin: 8px;
         }
-
-        .navbar-profile{
-            background-color: #007bff;
-            height: 72px;
-            width: 256px;
-        }
     </style>
 </head>
 
@@ -120,7 +134,10 @@
             </div>
         </div>
         <div class="container">
-            <h1>Daftar Produk</h1>
+            <div class="banner-container">
+                <img class="banner" src="/dummy_banner.jpg" alt="">
+            </div>
+            <h1 class="daftar-product-title">Daftar Produk</h1>
             <div class="row">
                 @foreach ($products as $product)
                 <div class="col-md-4 mb-4">

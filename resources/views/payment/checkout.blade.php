@@ -4,7 +4,9 @@
 <head>
     <title>Checkout</title>
     <style>
-        /* CSS styling for the checkout page */
+        body{
+            
+        }
     </style>
 </head>
 

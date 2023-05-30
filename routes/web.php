@@ -40,6 +40,7 @@ Route::middleware(['auth'])->group(function () {
     // Payment
     Route::get('/product/{idProduct}/price/{price}', [PaymentController::class, 'showCheckoutForm'])->name('product.price');
     Route::post('/checkout', [PaymentController::class, 'checkOut'])->name('product.checkout');
+    
     // for success redirect
     Route::get('/success', [PaymentController::class, 'updatePayment'])->name('success.payment');
 });

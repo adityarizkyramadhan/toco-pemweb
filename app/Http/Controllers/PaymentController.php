@@ -53,23 +53,35 @@ class PaymentController extends Controller
         $user = User::find($data['user_id']);
 
         Xendit::setApiKey('xnd_development_ufT0WRaRALNj3a9JSFx9oLGaylW9Sef8j8Qib7ND5Y05DhtNWFULVpA6CKqft2');
-        Payment::create($data);
-
+        $payment = Payment::create($data);
+        // Link callbak berisi id payment untuk update status
+        $linkCallback = "http://localhost:8000/success?id=" . $payment->id;
         $params = [
             'external_id' => 'demo_147580196270',
             'payer_email' => $user->email,
             'description' => $product->name,
             'amount' => $data['total-price'],
-            "failure_redirect_url" => "https://your-redirect-website.com/failure",
-            "success_redirect_url" => "https://your-redirect-website.com/success",
+            // "failure_redirect_url" => "https://your-redirect-website.com/failure",
+            "success_redirect_url" => $linkCallback,
         ];
-
 
         $invoice = Invoice::create($params);
         // Ambil invoice url
 
         $invoiceUrl = $invoice['invoice_url'];
-        // Rdirect ke halaman payment Xendit
         return redirect($invoiceUrl);
+    }
+
+    //Update payment from redirect model Payment with status paid
+    public function updatePayment(Request $request)
+    {
+        $data = [
+            'status' => 'paid',
+        ];
+        // Get payment by id from query string
+        $payment = Payment::find($request->input('id'));
+        // Update status
+        $payment->update($data);
+        return view('payment/success');
     }
 }

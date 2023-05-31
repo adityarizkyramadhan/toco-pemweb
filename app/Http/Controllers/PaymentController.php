@@ -16,7 +16,7 @@ class PaymentController extends Controller
     //
     public function showCheckoutForm(Request $request, $idProduct, $price)
     {
-        return view('payment/checkout', ['price' => $price]);
+        return view('payment/checkout', ['price' => $price, 'idProduct' => $idProduct]);
     }
 
     public function checkOut(Request $request)
@@ -36,7 +36,7 @@ class PaymentController extends Controller
         $message = $request->input('message');
         $quantity = $request->input('quantity');
         $price = $request->input('price');
-        $idProduct = $request->input('idProduct');
+        $idProduct = $request->input('id_product');
         $totalprice = $price * $quantity;
         $status = 'pending';
 

@@ -3,6 +3,7 @@
 
 <head>
     <title>Detail Produk</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <style>
         body {
             margin: 0;
@@ -185,7 +186,11 @@
     <div class="bottombar">
         <p class="product-price">Total harga : Rp {{ $product['price'] }}</p>
         <div class="bottombar-button-container">
-            <a class="button" onclick="showPopup({{ $product['id'] }})">Tambah ke Keranjang</a>
+            <form action="/cart" method="POST">
+                @csrf
+                <input type="hidden" name="productId" value="{{ $product['id'] }}">
+                <button type="submit" class="button" onclick="showPopup(event, {{ $product['id'] }})">Tambah ke Keranjang</button>
+            </form>
             <a class="button" href="/product/{{ $product['id'] }}/price/{{ $product['price'] }}">Beli Langsung</a>
         </div>
     </div>
@@ -204,30 +209,32 @@
 </body>
 
 <script>
-    function showPopup(id) {
+    function showPopup(event,id) {
+        event.preventDefault();
+        var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
         var productId = id; // ID produk yang ingin ditambahkan ke keranjang
-        var url = '/cart/' + productId; // URL permintaan GET dengan ID produk yang sesuai
-        console.log(url);
-        fetch(url, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
+        fetch("/cart", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': csrfToken,
+            },
+            body: JSON.stringify({
+                productId: productId
             })
-            .then(response => {
-                console.log(response);
-                if (response.ok) {
-                    var popup = document.getElementById('popup');
-                    popup.style.display = 'block';
-                } else {
-                    throw new Error('Gagal menambahkan ke keranjang.');
-                }
-            })
-            .catch(error => {
-                console.log(error);
-                var popup = document.getElementById('popup-error');
+        }).then(function(response) {
+            if (response.status == 200) {
+                var popup = document.getElementById('popup');
+                var overlay = document.getElementById('overlay');
                 popup.style.display = 'block';
-            });
+                overlay.style.display = 'block';
+            } else {
+                var popup = document.getElementById('popup-error');
+                var overlay = document.getElementById('overlay');
+                popup.style.display = 'block';
+                overlay.style.display = 'block';
+            }
+        });
     }
 
 
@@ -235,11 +242,15 @@
     function closePopup() {
         var popup = document.getElementById('popup');
         popup.style.display = 'none';
+        var overlay = document.getElementById('overlay');
+        overlay.style.display = 'none';
     }
 
     function closePopupError() {
         var popup = document.getElementById('popup-error');
         popup.style.display = 'none';
+        var overlay = document.getElementById('overlay');
+        overlay.style.display = 'none';
     }
 </script>
 

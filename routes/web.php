@@ -30,6 +30,7 @@ Route::get('/register', [SessionController::class, 'registerPage'])->name('regis
 Route::post('/register', [SessionController::class, 'register'])->name('register.post');
 
 Route::middleware(['auth'])->group(function () {
+    Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
     Route::post('/send-message', [ChatController::class, 'sendMessage'])->name('send.message');
     Route::get('/chat', [ChatController::class, 'index'])->name('chat');
     Route::get('/success', [PaymentController::class, 'updatePayment'])->name('success.payment');
@@ -41,5 +42,4 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/checkout', [PaymentController::class, 'checkOut'])->name('product.checkout');
 
     // Cart
-    Route::get('cart/{productId}', [CartController::class, 'store'])->name('cart.store');
 });

@@ -30,7 +30,12 @@ class ChatController extends Controller
             }
             $prompt .= "Semua product bersifat testing dan dapat dibeli dengan sistem preoder.";
             $prompt .= "Jika user bertanya diluar konteks, maka bot akan menjawab : Mohon maaf, saya ditujukan untuk menjawab pertanyaan mengenai produk yang dijual.";
-            $prompt .=  "User : " . $message;
+            $prompt .=  $message;
+            // Buat larang bot menjawab pertanyaan yang tidak sesuai konteks
+            $prompt .= "Larangan dan contoh chat diluar konteks: ";
+            $prompt .= "jika user berntanya Apa itu Laravel?";
+            $prompt .= "maka jawab dengan : Mohon maaf, saya ditujukan untuk menjawab pertanyaan mengenai produk yang dijual.";
+            $prompt .= "anda sebagai bot hanya menjawab terkait produk dan sistem pemesanan saja dan dilarang menjawab diluar konteks tersebut.";
             // Buat dummy data response misal : "chat masuk"
 
             $data = Http::withHeaders([

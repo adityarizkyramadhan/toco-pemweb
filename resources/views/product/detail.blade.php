@@ -133,6 +133,30 @@
         .button:hover {
             background-color: darkgreen;
         }
+
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            z-index: 9999;
+            display: none;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9998;
+            display: none;
+        }
     </style>
 </head>
 
@@ -161,10 +185,64 @@
     <div class="bottombar">
         <p class="product-price">Total harga : Rp {{ $product['price'] }}</p>
         <div class="bottombar-button-container">
-            <a class="button" href="">Tambah ke Keranjang</a>
-            <a class="button" href="/product/{{$product['id']}}/price/{{$product['price']}}">Beli Langsung</a>
+            <a class="button" onclick="showPopup({{ $product['id'] }})">Tambah ke Keranjang</a>
+            <a class="button" href="/product/{{ $product['id'] }}/price/{{ $product['price'] }}">Beli Langsung</a>
         </div>
     </div>
+    <div id="popup" class="popup">
+        <h3>Item berhasil ditambahkan ke keranjang!</h3>
+        <button onclick="closePopup()">Tutup</button>
+    </div>
+
+    <div id="popup-error" class="popup">
+        <h3>Gagal menambahkan ke keranjang!</h3>
+        <button onclick=" closePopupError()">Tutup</button>
+    </div>
+
+    <div id="overlay" class="overlay"></div>
+
 </body>
+
+<script>
+    function showPopup(id) {
+        var productId = id; // ID produk yang ingin ditambahkan ke keranjang
+        var url = '/cart/' + productId; // URL permintaan GET dengan ID produk yang sesuai
+        console.log(url);
+        fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                console.log(response);
+                if (response.ok) {
+                    var popup = document.getElementById('popup');
+                    popup.style.display = 'block';
+                } else {
+                    throw new Error('Gagal menambahkan ke keranjang.');
+                }
+            })
+            .catch(error => {
+                console.log(error);
+                var popup = document.getElementById('popup-error');
+                popup.style.display = 'block';
+            });
+    }
+
+
+
+    function closePopup() {
+        var popup = document.getElementById('popup');
+        popup.style.display = 'none';
+    }
+
+    function closePopupError() {
+        var popup = document.getElementById('popup-error');
+        popup.style.display = 'none';
+    }
+</script>
+
+
 
 </html>

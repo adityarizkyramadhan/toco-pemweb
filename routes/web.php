@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
@@ -38,4 +39,7 @@ Route::middleware(['auth'])->group(function () {
     // Payment
     Route::get('/product/{idProduct}/price/{price}', [PaymentController::class, 'showCheckoutForm'])->name('product.price');
     Route::post('/checkout', [PaymentController::class, 'checkOut'])->name('product.checkout');
+
+    // Cart
+    Route::get('cart/{productId}', [CartController::class, 'store'])->name('cart.store');
 });

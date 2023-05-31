@@ -147,9 +147,7 @@
                 </div>
 
                 <button type="submit" class="button">Checkout</button>
-                <!--tambahkan IdProduct dan IdUser untuk dipost-->
-                {{-- <input type="hidden" name="id_product" value="{{ $IdProduct }}">
-                <input type="hidden" name="id_user" value="{{ $IdUser }}"> --}}
+                <input type="hidden" name="id_product" value="{{ $idProduct }}">
             </form>
         </div>
     </div>

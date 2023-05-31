@@ -41,7 +41,7 @@ class SessionController extends Controller
             return redirect()->route('login')->with('error', 'Email or password is incorrect');
         }
         //check password with bcrypt
-        if (!Auth::attempt($infoLogin)) {
+        if (!Auth::attempt($infoLogin, true)) {
             return redirect()->route('login')->with('error', 'Email or password is incorrect');
         }
         //if success login

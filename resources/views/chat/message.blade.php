@@ -67,7 +67,7 @@
                     .then(data => {
                         console.log(data);
                         // pisahkan dari array json dimana user = user dan user = bot
-                        renderChat(data.message.content);
+                        renderChat("Bot : " + data.message.content);
                         // Clear input field
                     })
                     .catch(error => {

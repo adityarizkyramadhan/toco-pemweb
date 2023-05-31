@@ -28,15 +28,13 @@ Route::post('/login', [SessionController::class, 'login'])->name('login.post');
 Route::get('/register', [SessionController::class, 'registerPage'])->name('register');
 Route::post('/register', [SessionController::class, 'register'])->name('register.post');
 
-Route::post('/send-message', [ChatController::class, 'sendMessage'])->name('send.message');
-Route::get('/chat', [ChatController::class, 'index'])->name('chat');
-Route::get('/success', [PaymentController::class, 'updatePayment'])->name('success.payment');
-
-Route::get('/product', [ProductController::class, 'index'])->name('firstpage');
-Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.detail');
-
-
 Route::middleware(['auth'])->group(function () {
+    Route::post('/send-message', [ChatController::class, 'sendMessage'])->name('send.message');
+    Route::get('/chat', [ChatController::class, 'index'])->name('chat');
+    Route::get('/success', [PaymentController::class, 'updatePayment'])->name('success.payment');
+
+    Route::get('/product', [ProductController::class, 'index'])->name('firstpage');
+    Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.detail');
     // Payment
     Route::get('/product/{idProduct}/price/{price}', [PaymentController::class, 'showCheckoutForm'])->name('product.price');
     Route::post('/checkout', [PaymentController::class, 'checkOut'])->name('product.checkout');

@@ -131,6 +131,7 @@
                 <a class = "navbar-menu-item" href="">Pesanan</a>
                 <a class = "navbar-menu-item" href="">Produk</a>
                 <a class = "navbar-menu-item" href="">Penjualan</a>
+                <a class = "navbar-menu-item" href="/cart">Keranjank!</a>
             </div>
         </div>
         <div class="container">

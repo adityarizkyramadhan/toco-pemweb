@@ -31,6 +31,11 @@ Route::post('/register', [SessionController::class, 'register'])->name('register
 
 Route::middleware(['auth'])->group(function () {
     Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::delete("/cart/{id}", [CartController::class, 'destroy'])->name('cart.destroy');
+    Route::get('/keranjangcheckout', [CartController::class, 'keranjangCheckout'])->name('cart.checkout');
+    Route::post('/cartCheckOut', [PaymentController::class, 'cartCheckOut'])->name('cart.checkout.post');
+    
     Route::post('/send-message', [ChatController::class, 'sendMessage'])->name('send.message');
     Route::get('/chat', [ChatController::class, 'index'])->name('chat');
     Route::get('/success', [PaymentController::class, 'updatePayment'])->name('success.payment');
@@ -40,6 +45,5 @@ Route::middleware(['auth'])->group(function () {
     // Payment
     Route::get('/product/{idProduct}/price/{price}', [PaymentController::class, 'showCheckoutForm'])->name('product.price');
     Route::post('/checkout', [PaymentController::class, 'checkOut'])->name('product.checkout');
-
     // Cart
 });

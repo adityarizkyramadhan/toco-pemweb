@@ -13,9 +13,10 @@ class CartController extends Controller
     {
         // ambil data cart berdasarkan user id
         $result = Cart::where('user_id', Auth::user()->id)->get();
-
-        var_dump($result);
-        return view('cart/index', compact('result'));
+        $products = $result->map(function ($item) {
+            return Product::find($item->product_id);
+        });
+        return view('cart/index', compact('products', 'result'));
     }
 
     public function store(Request $request)
@@ -41,5 +42,24 @@ class CartController extends Controller
             'success' => true,
             'message' => 'Success add to cart',
         ]);
+    }
+
+    public function destroy($id)
+    {
+        $cart = Cart::where('product_id', $id)->first();
+        $cart->delete();
+        return redirect()->route('cart.index') -> with('success', 'Product deleted successfully');
+    }
+
+    public function keranjangCheckout(){
+        $result = Cart::where('user_id', Auth::user()->id)->get();
+        $products = $result->map(function ($item) {
+            return Product::find($item->product_id);
+        });
+
+        return view(
+            'cart/keranjang-checkout',
+            compact('products', 'result')
+        );
     }
 }

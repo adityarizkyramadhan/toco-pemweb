@@ -126,12 +126,11 @@
 <body>
     <div>
         <div class="navbar">
-            <img class="navbar-icon" src="logo_rigthttext.jpg" alt=""/>
+            <a href="/product">
+                <img class="navbar-icon" src="../logo_rigthttext.jpg" alt="" />
+            </a>
             <div class="navbar-menu">
-                <a class = "navbar-menu-item" href="">Pesanan</a>
-                <a class = "navbar-menu-item" href="">Produk</a>
-                <a class = "navbar-menu-item" href="">Penjualan</a>
-                <a class = "navbar-menu-item" href="/cart">Keranjank!</a>
+                <a class = "navbar-menu-item" href="/cart">Keranjang</a>
             </div>
         </div>
         <div class="container">

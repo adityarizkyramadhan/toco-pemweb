@@ -79,7 +79,7 @@ class PaymentController extends Controller
 
     public function cartCheckOut(Request $request)
     {
-        
+
         $message = $request->input('message');
         $totalprice = $request->input('totalprice');
         $status = 'pending';
@@ -112,7 +112,7 @@ class PaymentController extends Controller
         Xendit::setApiKey('xnd_development_ufT0WRaRALNj3a9JSFx9oLGaylW9Sef8j8Qib7ND5Y05DhtNWFULVpA6CKqft2');
         // Link callbak berisi id payment untuk update status
         $linkCallback = "http://localhost:8000/success?id=" . $payment->id;
- 
+
         $params = [
             'external_id' => 'demo_147580196270',
             'payer_email' => $user->email,
@@ -126,13 +126,16 @@ class PaymentController extends Controller
         // Ambil invoice url
 
         $invoiceUrl = $invoice['invoice_url'];
-        foreach  ($products as $product) {
+        // Update payment with loop for each product
+        foreach ($products as $product) {
             $data = [
                 'status' => 'paid',
             ];
-            $payment = Payment::where('product_id', $product['id'])->where('status', 'pending')->first();
+            // Get payment by id from query string
+            $payment = Payment::where('product_id', $product['id'], 'user_id', Auth::user()->id)->first();
+            // Update status
             $payment->update($data);
-        };
+        }
         return redirect($invoiceUrl);
     }
 

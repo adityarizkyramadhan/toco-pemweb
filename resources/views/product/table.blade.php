@@ -131,6 +131,7 @@
             </a>
             <div class="navbar-menu">
                 <a class = "navbar-menu-item" href="/cart">Keranjang</a>
+                <a class = "navbar-menu-item" href="/history">History</a>
             </div>
         </div>
         <div class="container">

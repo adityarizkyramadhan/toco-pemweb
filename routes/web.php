@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SessionController;
@@ -35,7 +36,7 @@ Route::middleware(['auth'])->group(function () {
     Route::delete("/cart/{id}", [CartController::class, 'destroy'])->name('cart.destroy');
     Route::get('/keranjangcheckout', [CartController::class, 'keranjangCheckout'])->name('cart.checkout');
     Route::post('/cartCheckOut', [PaymentController::class, 'cartCheckOut'])->name('cart.checkout.post');
-    
+
     Route::post('/send-message', [ChatController::class, 'sendMessage'])->name('send.message');
     Route::get('/chat', [ChatController::class, 'index'])->name('chat');
     Route::get('/success', [PaymentController::class, 'updatePayment'])->name('success.payment');
@@ -45,5 +46,6 @@ Route::middleware(['auth'])->group(function () {
     // Payment
     Route::get('/product/{idProduct}/price/{price}', [PaymentController::class, 'showCheckoutForm'])->name('product.price');
     Route::post('/checkout', [PaymentController::class, 'checkOut'])->name('product.checkout');
-    // Cart
+    // History
+    Route::get('/history', [HistoryController::class, 'index'])->name('history');
 });

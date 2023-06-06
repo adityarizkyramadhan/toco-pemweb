@@ -10,9 +10,11 @@
     <style>
         table {
             border-collapse: collapse;
+            max-width: none;
+            width: 100%;
         }
 
-        body{
+        body {
             margin: 0;
             padding: 0;
             width: 100%;
@@ -22,18 +24,23 @@
         .container {
             width: 100%;
             max-width: none;
-            padding: 40px;
+            padding-top: 40px;
         }
 
-        th,
         td {
-            padding: 8px;
+            padding-left: 8px;
+            padding-right: 8px;
             text-align: left;
+            width: calc(100%/8);
             border-bottom: 1px solid #ddd;
         }
 
         th {
             background-color: #f2f2f2;
+        }
+
+        tr {
+            height: 32px;
         }
 
         tr:nth-child(even) {
@@ -55,6 +62,12 @@
         td.status.red {
             background-color: red;
             color: white;
+        }
+
+        .item-image {
+            width: calc(100%);
+            height: 128px;
+            object-fit: cover;
         }
 
         .navbar {
@@ -98,41 +111,33 @@
             <table>
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>Created At</th>
-                        <th>Updated At</th>
                         <th>Message</th>
                         <th>Quantity</th>
                         <th>Price</th>
                         <th>Total Price</th>
                         <th>Status</th>
-                        <th>User ID</th>
-                        <th>Product ID</th>
                         <th>Product Name</th>
                         <th>Product Image</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($data as $history)
-                        <tr class="{{ $loop->iteration % 2 == 0 ? 'green' : '' }}">
-                            <td>{{ $history->id }}</td>
-                            <td>{{ $history->created_at }}</td>
-                            <td>{{ $history->updated_at }}</td>
-                            <td>{{ $history->message }}</td>
-                            <td>{{ $history->quantity }}</td>
-                            <td>{{ $history->price }}</td>
-                            <td>{{ $history['total-price'] }}</td>
-                            <td class="status {{ $history->status == 'paid' ? 'green' : 'red' }}">{{ $history->status }}
-                            </td>
-                            <td>{{ $history->user_id }}</td>
-                            <td>{{ $history->product_id }}</td>
-                            <td>{{ $history->product_name }}</td>
-                            <td><img src="{{ $history->product_image }}" alt="Product Image"></td>
-                        </tr>
+                    <tr class="{{ $loop->iteration % 2 == 0 ? 'green' : '' }}">
+                        <td>{{ $history->created_at }}</td>
+                        <td>{{ $history->message }}</td>
+                        <td>{{ $history->quantity }}</td>
+                        <td>{{ $history->price }}</td>
+                        <td>{{ $history['total-price'] }}</td>
+                        <td class="status {{ $history->status == 'paid' ? 'green' : 'red' }}">{{ $history->status }}
+                        </td>
+                        <td>{{ $history->product_name }}</td>
+                        <td><img class="item-image" src="{{ $history->product_image }}" alt="Product Image"></td>
+                    </tr>
                     @endforeach
                 </tbody>
             </table>
-        </div>
+    </div>
     </div>
 </body>
 

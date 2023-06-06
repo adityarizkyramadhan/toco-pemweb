@@ -163,12 +163,13 @@
 
 <body>
     <div>
-        <div class="navbar">
+    <div class="navbar">
             <a href="/product">
-                            <img class="navbar-icon" src="../logo_rigthttext.jpg" alt="" />
+                <img class="navbar-icon" src="../logo_rigthttext.jpg" alt="" />
             </a>
             <div class="navbar-menu">
                 <a class = "navbar-menu-item" href="/cart">Keranjang</a>
+                <a class = "navbar-menu-item" href="/history">History</a>
             </div>
         </div>
         <div class="product-bottombar-container">

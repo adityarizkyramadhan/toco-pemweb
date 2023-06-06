@@ -69,6 +69,7 @@
         </a>
         <div class="navbar-menu">
             <a class="navbar-menu-item" href="/cart">Keranjang</a>
+            <a class="navbar-menu-item" href="/history">History</a>
         </div>
     </div>
     <h1>Keranjang</h1>
@@ -79,19 +80,19 @@
         <th>Delete Produk</th>
 
         @foreach ($products as $item)
-            <tr>
-                <td>{{ $loop->iteration }}</td>
-                <td>{{ $item->price }}</td>
-                <td>{{ $item->name }}</td>
-                <td>
-                    <form action="{{ route('cart.destroy', $item->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit">Delete</button>
-                    </form>
-                </td>
+        <tr>
+            <td>{{ $loop->iteration }}</td>
+            <td>{{ $item->price }}</td>
+            <td>{{ $item->name }}</td>
+            <td>
+                <form action="{{ route('cart.destroy', $item->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
 
-            </tr>
+        </tr>
         @endforeach
     </table>
 

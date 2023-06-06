@@ -99,7 +99,7 @@
         }
 
         .bottombar {
-            position: absolute;
+            position: fixed;
             box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
             bottom: 0;
             background-color: #ebfef6;
@@ -158,18 +158,44 @@
             z-index: 9998;
             display: none;
         }
+
+
+        .chat-fab {
+            height: 72px;
+            width: 72px;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            background-color: white;
+            position: fixed;
+            bottom: 122px;
+            right: 20px;
+            border-radius: 50%;
+        }
+
+        .chat-fab-img-container {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .chat-fab-img {
+            height: 32px;
+            width: 32px;
+            padding: 8px;
+        }
     </style>
 </head>
 
 <body>
     <div>
-    <div class="navbar">
+        <div class="navbar">
             <a href="/product">
                 <img class="navbar-icon" src="../logo_rigthttext.jpg" alt="" />
             </a>
             <div class="navbar-menu">
-                <a class = "navbar-menu-item" href="/cart">Keranjang</a>
-                <a class = "navbar-menu-item" href="/history">History</a>
+                <a class="navbar-menu-item" href="/cart">Keranjang</a>
+                <a class="navbar-menu-item" href="/history">History</a>
             </div>
         </div>
         <div class="product-bottombar-container">
@@ -195,6 +221,11 @@
             <a class="button" href="/product/{{ $product['id'] }}/price/{{ $product['price'] }}">Beli Langsung</a>
         </div>
     </div>
+    <a class="chat-fab" href="/chat">
+        <div class="chat-fab-img-container">
+            <img class="chat-fab-img" src="../icon_chat.jpg" alt="">
+        </div>
+    </a>
     <div id="popup" class="popup">
         <h3>Item berhasil ditambahkan ke keranjang!</h3>
         <button onclick="closePopup()">Tutup</button>
@@ -210,7 +241,7 @@
 </body>
 
 <script>
-    function showPopup(event,id) {
+    function showPopup(event, id) {
         event.preventDefault();
         var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
         var productId = id; // ID produk yang ingin ditambahkan ke keranjang

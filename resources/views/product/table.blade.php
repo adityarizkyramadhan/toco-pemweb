@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Product</title>
     <style>
-        body{
+        body {
             margin: 0;
             padding: 0;
             width: 100%;
@@ -19,7 +19,7 @@
             max-width: none;
         }
 
-        .banner-container{
+        .banner-container {
             display: flex;
             justify-content: center;
             background-color: gray;
@@ -29,12 +29,12 @@
             margin: 32px;
         }
 
-        .banner{
+        .banner {
             max-width: 50%;
             height: auto;
         }
 
-        .daftar-product-title{
+        .daftar-product-title {
             margin: 16px;
         }
 
@@ -112,13 +112,38 @@
             height: 72px;
         }
 
-        .navbar-menu{
+        .navbar-menu {
             display: flex;
             flex-direction: row;
         }
 
-        .navbar-menu-item{
+        .navbar-menu-item {
             margin: 8px;
+        }
+
+        .chat-fab {
+            height: 72px;
+            width: 72px;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            background-color: white;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            border-radius: 50%;
+        }
+
+        .chat-fab-img-container {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .chat-fab-img {
+            height: 32px;
+            width: 32px;
+            padding: 8px;
         }
     </style>
 </head>
@@ -130,10 +155,15 @@
                 <img class="navbar-icon" src="../logo_rigthttext.jpg" alt="" />
             </a>
             <div class="navbar-menu">
-                <a class = "navbar-menu-item" href="/cart">Keranjang</a>
-                <a class = "navbar-menu-item" href="/history">History</a>
+                <a class="navbar-menu-item" href="/cart">Keranjang</a>
+                <a class="navbar-menu-item" href="/history">History</a>
             </div>
         </div>
+        <a class="chat-fab" href="/chat">
+            <div class="chat-fab-img-container">
+                <img class="chat-fab-img" src="../icon_chat.jpg" alt="">
+            </div>
+        </a>
         <div class="container">
             <div class="banner-container">
                 <img class="banner" src="/dummy_banner.jpg" alt="">

@@ -93,6 +93,31 @@
         .navbar-menu-item {
             margin: 8px;
         }
+
+        .chat-fab {
+            height: 72px;
+            width: 72px;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            background-color: white;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            border-radius: 50%;
+        }
+
+        .chat-fab-img-container {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .chat-fab-img {
+            height: 32px;
+            width: 32px;
+            padding: 8px;
+        }
     </style>
 </head>
 
@@ -107,6 +132,11 @@
                 <a class="navbar-menu-item" href="/history">History</a>
             </div>
         </div>
+        <a class="chat-fab" href="/chat">
+            <div class="chat-fab-img-container">
+                <img class="chat-fab-img" src="../icon_chat.jpg" alt="">
+            </div>
+        </a>
         <<div class="container">>
             <table>
                 <thead>

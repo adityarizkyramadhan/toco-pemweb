@@ -4,6 +4,7 @@
 <head>
     <title>Chat Interface</title>
     <style>
+        /* CSS untuk .chatbox */
         .chatbox {
             width: 400px;
             height: 300px;
@@ -11,8 +12,25 @@
             overflow: auto;
         }
 
+        /* CSS untuk .input-box */
         .input-box {
             margin-top: 10px;
+        }
+
+        /* CSS untuk input[type="text"] */
+        input[type="text"] {
+            width: 300px;
+            padding: 5px;
+            border: 1px solid #ccc;
+        }
+
+        /* CSS untuk button */
+        button {
+            padding: 5px 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
         }
     </style>
 </head>

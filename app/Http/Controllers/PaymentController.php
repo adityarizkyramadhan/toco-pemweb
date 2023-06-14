@@ -132,7 +132,7 @@ class PaymentController extends Controller
                 'status' => 'paid',
             ];
             // Get payment by id from query string
-            $payment = Payment::where('product_id', $product['id'], 'user_id', Auth::user()->id)->first();
+            $payment = Payment::where('product_id', $product['id'])->first();
             // Update status
             $payment->update($data);
         }

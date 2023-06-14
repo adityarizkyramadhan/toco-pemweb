@@ -21,21 +21,18 @@ class ChatController extends Controller
         if (trim($message) !== "") {
             // Buat prompt untuk chatbot
             $prompt = "Kamu merupakan bot yang akan membantu user menjawab kebingungan pada produk yang dijual.";
-            $prompt .= "User : $message";
+            $prompt .= "Cukup jawab pertanyaan user dengan singkat dan jelas serta informatif.";
+            $prompt .= "Tidak perlu memberi contoh pada user, jadilah bot yang kaku";
             // Query Product Semua
             $products = Product::all();
             $prompt .= "Product : ";
             foreach ($products as $product) {
                 $prompt .= $product->name . ", ";
+                $prompt .= $product->description . ", ";
+                $prompt .= $product->price . ", ";
             }
             $prompt .= "Semua product bersifat testing dan dapat dibeli dengan sistem preoder.";
-            $prompt .= "Jika user bertanya diluar konteks, maka bot akan menjawab : Mohon maaf, saya ditujukan untuk menjawab pertanyaan mengenai produk yang dijual.";
             $prompt .=  $message;
-            // Buat larang bot menjawab pertanyaan yang tidak sesuai konteks
-            $prompt .= "Larangan dan contoh chat diluar konteks: ";
-            $prompt .= "jika user berntanya Apa itu Laravel?";
-            $prompt .= "maka jawab dengan : Mohon maaf, saya ditujukan untuk menjawab pertanyaan mengenai produk yang dijual.";
-            $prompt .= "anda sebagai bot hanya menjawab terkait produk dan sistem pemesanan saja dan dilarang menjawab diluar konteks tersebut.";
             // Buat dummy data response misal : "chat masuk"
 
             $data = Http::withHeaders([
